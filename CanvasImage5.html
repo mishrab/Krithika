@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Canvas Image</title>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <style>
+
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            var img = new Image();
+            img.src = 'img/tiny_image.jpg';
+
+            //Get the canvas elements, set height and width and get context.
+            var can1 = document.getElementById('c1');
+            can1.height = 75; can1.width = 100;
+            var cont1 = can1.getContext('2d');
+
+            var can2 = document.getElementById('c2');
+            can2.height = 300; can2.width = 600;
+            var cont2 = can2.getContext('2d');
+
+            img.onload = function() {
+                // this is the context of the image itself.0,0 - x and y coords.
+                // 100 - width and 75 is the height of the image you want to draw on the canvas.
+                cont1.drawImage(this,0,0,100,75);
+                [1,2,3].forEach(function(e){
+                    cont2.drawImage(can1,0,0,100,75,e*100,0,200,150);
+                });
+
+            };
+
+        });
+    </script>
+</head>
+<body>
+<canvas id="c1" style="border: 1px solid red; margin: 0.30em">HTML5 is not supported</canvas>
+<canvas id="c2" style="border: 1px solid blue; margine: 0.25em">HTML5 is not supported</canvas>
+</body>
+</html>

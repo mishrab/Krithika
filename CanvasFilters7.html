@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Canvas Filters</title>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #375180;
+        }
+
+        header {
+            background-color: #2a3a48;
+            margin: 1em 1em 3em 1em;
+            display: flex;
+            justify-content: space-around;
+            border-radius: 0.25em;
+        }
+
+        span.button{
+            font: 500 0.85em 'Helvetica Neue';
+            display: inline-block;
+            line-height: 3em;
+            padding: 0 2em;
+            color: white;
+            justify-content: space-around;
+            cursor: pointer;
+        }
+
+        span.button:hover {
+            transition: all 500ms ease;
+            background-color: #415a6f;
+            text-shadow: 1px 1px 1px #2a3a48;
+        }
+
+        #mosque {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
+    <script>
+            var gllImageFilter = {};
+
+            // Process Image
+            gllImageFilter.processImage = function(canvas, img_location){
+                var img = new Image();
+                img.src = img_location;
+                img.onload = function(evt){
+                    canvas.height = img.height;
+                    canvas.width = img.width;
+                    var ctx = canvas.getContext('2d');
+                    ctx.drawImage(this,0,0, canvas.width, canvas.height);
+                };
+            };
+
+            gllImageFilter.reset = function(canvas, img_location){
+                gllImageFilter.processImage(canvas,img_location);
+            };
+
+            gllImageFilter.applyFilter = function(canvas,filter){
+                var ctx = canvas.getContext('2d');
+                var image_data = ctx.getImageData(0,0, canvas.width, canvas.height);
+                filter(image_data);
+                ctx.putImageData(image_data,0,0);
+            };
+
+            gllImageFilter.blue = function(img){
+                var red, blue, green, gr;
+                var length = img.data.length; // pixel array length.
+                for (var i = 0; i < length; i+=4){
+                    red = img.data[i];
+                    blue = img.data[i+1];
+                    green = img.data[i+2];
+                    gr = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+                    img.data[i] = 0;
+                    img.data[i+1] = 0;
+                    img.data[i+2] = gr;
+                }
+            };
+
+            gllImageFilter.grayscale = function(img){
+                var red, blue, green, gr;
+                var length = img.data.length; // pixel array length.
+                for (var i = 0; i < length; i+=4){
+                    red = img.data[i];
+                    blue = img.data[i+1];
+                    green = img.data[i+2];
+                    gr = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+                    img.data[i] = img.data[i+1] = img.data[i+2] = gr;
+                }
+            };
+
+            gllImageFilter.threshold = function(img){
+                var threshold = 100;
+                var red, blue, green, gr;
+                var length = img.data.length; // pixel array length.
+                for (var i = 0; i < length; i+=4){
+                    red = img.data[i];
+                    blue = img.data[i+1];
+                    green = img.data[i+2];
+                    gr = (0.2126 * red + 0.7152 * green + 0.0722 * blue >= threshold) ? 255 : 0;
+                    img.data[i] = img.data[i+1] = img.data[i+2] = gr;
+                }
+            };
+            gllImageFilter.brighten = function(img){
+                var red, blue, green, gr;
+                var length = img.data.length; // pixel array length.
+                for (var i = 0; i < length; i+=4){
+                    img.data[i] += 10;
+                    img.data[i+1] += 10;
+                    img.data[i+2] += 10;
+                }
+            };
+            gllImageFilter.darken = function(img){
+                var red, blue, green, gr;
+                var length = img.data.length; // pixel array length.
+                for (var i = 0; i < length; i+=4){
+                    img.data[i] -= 10;
+                    img.data[i+1] -= 10;
+                    img.data[i+2] -= 10;
+                }
+            };
+
+
+
+
+            window.onload = function(){
+
+                var canvas = document.getElementById('mosque');
+                gllImageFilter.processImage(canvas, 'img/blue_mosque.jpg');
+
+                document.getElementById('reset').onclick = function(){
+                    gllImageFilter.reset(canvas, 'img/blue_mosque.jpg');
+                };
+
+                document.getElementById('blue').onclick = function(){
+                    gllImageFilter.applyFilter(canvas, gllImageFilter.blue);
+                };
+
+                document.getElementById('grayscale').onclick = function(){
+                    gllImageFilter.applyFilter(canvas, gllImageFilter.grayscale);
+                };
+
+                document.getElementById('darken').onclick = function(){
+                    gllImageFilter.applyFilter(canvas, gllImageFilter.darken);
+                };
+
+                document.getElementById('brighten').onclick = function(){
+                    gllImageFilter.applyFilter(canvas, gllImageFilter.brighten);
+                };
+
+                document.getElementById('threshold').onclick = function(){
+                    gllImageFilter.applyFilter(canvas, gllImageFilter.threshold);
+                };
+            };
+    </script>
+</head>
+<body>
+<header>
+    <span class="button" id="reset">Reset</span>
+    <span class="button" id="blue">Blue</span>
+    <span class="button" id="brighten">Brighten</span>
+    <span class="button" id="darken">Darken</span>
+    <span class="button" id="threshold">Threshold</span>
+    <span class="button" id="grayscale">Grayscale</span>
+</header>
+
+<div id="container">
+    <canvas id="mosque">No support for HTML5</canvas>
+</div>
+
+</body>
+</html>

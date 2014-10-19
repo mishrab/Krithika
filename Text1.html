@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Canvas Text</title>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <script>
+        //document.addEventListener('DOMContentLoaded', function(){
+        window.onload = function() {
+            if (Modernizr.canvas) {
+
+                var canvas = document.getElementById('can');
+                var context = canvas.getContext('2d');
+                //context.fillStyle = "red";// sets up the color to be used in the fill
+                context.fillRect(0, 0, 400, 400); // actually fills up a rectangle with the above mentioned color.
+                context.fillStyle = 'white';
+                context.font = '3em Sans serif';
+                context.textBaseline = 'bottom';
+                context.fillText('Yavalry', 100, 100);
+
+            }
+        }
+       // });
+    </script>
+</head>
+<body>
+<canvas id="can">No support for HTML5</canvas>
+</body>
+</html>

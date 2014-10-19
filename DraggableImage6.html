@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>HTML5 draggable image</title>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <style>
+        .hide_image {
+            display: none;
+        }
+    </style>
+    <script>
+
+        window.addEventListener('load', function() {
+            if (Modernizr.canvas){
+                var canvas = document.getElementById('grayscale');
+                canvas.height = window.innerHeight;
+                canvas.width = window.innerWidth;
+                var context = canvas.getContext('2d');
+                var image = document.getElementsByClassName('hide_image')[0];
+                context.drawImage(image,0,0);
+
+                // global variables
+                var initial_pos  = {x: 0, y :0};
+
+                var final_pos = {x :0, y :0};
+
+                var image_pos = {x: 0, y :0};
+
+                canvas.addEventListener('mousedown', function(event){
+                    initial_pos.x = event.clientX;
+                    initial_pos.y = event.clientY;
+                    console.log(initial_pos.x, initial_pos.y);
+                    canvas.addEventListener('mousemove' , mousemove);
+                })
+
+                canvas.addEventListener('mouseup', function(event){
+                    canvas.removeEventListener('mousemove', mousemove);
+                })
+
+                function mousemove(evt){
+
+                    console.log("In mouse move: " + evt.clientX , evt.clientY);
+
+                    //setting the final position in Mouse Move.
+                    final_pos.x = evt.clientX;
+                    final_pos.y = evt.clientY;
+
+                    //figuring out the delta.  Final position - initial position
+                    var delta;
+                    delta = { x: final_pos.x - initial_pos.x ,
+                              y: final_pos.y - initial_pos.y};
+
+
+                    //Updating the image position.
+                    image_pos = { x: delta.x + image_pos.x,
+                                  y: delta.y + image_pos.y};
+
+
+                    // Every time it has to be reset so the that the final pos is now the new initial position
+                    initial_pos.x = final_pos.x;
+                    initial_pos.y = final_pos.y;
+                    context.clearRect(0,0, canvas.width, canvas.height); // clear it out.
+                    context.drawImage(image, image_pos.x , image_pos.y);
+                }
+
+
+
+            }
+        });
+
+
+    </script>
+</head>
+<body>
+<div style="position:fixed; z-index: 100; color: red">  info about point </div>
+<img src="img/tiny_image.jpg" alt="Text loaded instead of image" class="hide_image"/>
+<canvas id="grayscale"> No CANVAS stuff</canvas>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ShadowText2</title>
+
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            if(Modernizr.canvas) {
+                var can = document.getElementById('shadow_canvas');
+                var ctx = can.getContext('2d'); // get the Context
+
+                // Four properties that we need to add shadows to our canvas element.
+                // ShadowOffsetX, ShadowOffsetY, shadowBlur and shadowColor
+                ctx.save() // save the context before you apply the properties to it.
+
+                ctx.shadowOffsetX = 10;
+                ctx.shadowOffsetY = 10;
+                ctx.shadowBlur = 100; // 1 is crisp ; 100 is a blur;
+                ctx.shadowColor = "rgba(1,1,1,0.5)";  // play around with this.
+
+                ctx.fillStyle = "#CC0000";
+                ctx.fillRect(10, 10, 100, 100);
+
+                ctx.restore(); // restore the original context without the shadow...
+
+                ctx.fillStyle = "#CCCC00";
+                ctx.fillRect(180, 10, 100, 100);
+            }
+
+        });
+    </script>
+
+</head>
+<body>
+<canvas id="shadow_canvas">No support for HTML5</canvas>
+</body>
+</html>

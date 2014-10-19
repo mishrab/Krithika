@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ComplexImage4</title>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            if(Modernizr.canvas){
+                var img = new Image();
+                img.src = 'img/tiny_image.jpg';
+                var canvas = document.getElementById('canvas');
+                var ctx = canvas.getContext('2d');
+
+                var ctr = document.getElementById('counter');
+                img.addEventListener('load', function(evt){
+                    var multiplier = 1;
+                    var interval = window.setInterval(function(){
+                        multiplier += 1;
+                        multiplier === 1500 ? (function(){
+                            clearInterval(interval);
+                            context.fillStyle = "#aaa";
+                            context.font = '3em Sans Serif';
+                            context.textBaseline = 'top';
+                            context.fillText('Krithika ',130,130);
+                        }()) : false ;
+
+                        ctr.innerHTML = multiplier;
+                        ctx.drawImage(this,175,50, 350,200,0,0,0.5*multiplier,0.4*multiplier);
+                    },1);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+<canvas id="canvas" height="600" width="600">No support for HTML 5</canvas>
+
+<div id="counter"></div>
+</body>
+</html>
