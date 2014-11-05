@@ -19,7 +19,7 @@
             border-radius: 0.25em;
         }
 
-        span.button{
+        .button{
             font: 500 0.85em 'Helvetica Neue';
             display: inline-block;
             line-height: 3em;
@@ -29,7 +29,7 @@
             cursor: pointer;
         }
 
-        span.button:hover {
+        .button:hover {
             transition: all 500ms ease;
             background-color: #415a6f;
             text-shadow: 1px 1px 1px #2a3a48;
@@ -43,7 +43,12 @@
 
     </style>
     <script>
-            var gllImageFilter = {};
+
+
+
+            var canvas;
+
+            var gllImageFilter = {}; // empty object Module patten.
 
             // Process Image
             gllImageFilter.processImage = function(canvas, img_location){
@@ -124,13 +129,19 @@
                     img.data[i+2] -= 10;
                 }
             };
+            gllImageFilter.download = function(img){
+                var download_image = document.getElementById('download');
+                download_image.href = canvas.toDataURL();
+            };
+
 
 
 
 
             window.onload = function(){
 
-                var canvas = document.getElementById('mosque');
+                canvas = document.getElementById('mosque'); //
+
                 gllImageFilter.processImage(canvas, 'img/blue_mosque.jpg');
 
                 document.getElementById('reset').onclick = function(){
@@ -156,6 +167,10 @@
                 document.getElementById('threshold').onclick = function(){
                     gllImageFilter.applyFilter(canvas, gllImageFilter.threshold);
                 };
+
+                document.getElementById('download').onclick = function(){
+                    gllImageFilter.applyFilter(canvas, gllImageFilter.download);
+                };
             };
     </script>
 </head>
@@ -167,6 +182,7 @@
     <span class="button" id="darken">Darken</span>
     <span class="button" id="threshold">Threshold</span>
     <span class="button" id="grayscale">Grayscale</span>
+    <a class="button" id="download" href="" download="temple.jpg">Download</a>
 </header>
 
 <div id="container">

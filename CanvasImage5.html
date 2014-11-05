@@ -26,8 +26,9 @@
                 // this is the context of the image itself.0,0 - x and y coords.
                 // 100 - width and 75 is the height of the image you want to draw on the canvas.
                 cont1.drawImage(this,0,0,100,75);
-                [1,2,3].forEach(function(e){
-                    cont2.drawImage(can1,0,0,100,75,e*100,0,200,150);
+                [1,2,3].forEach(function(i){
+                    console.log("i = " + i);
+                    cont2.drawImage(can1,0,0,100,75,i*100,0,200,150);
                 });
 
             };

@@ -18,15 +18,16 @@
 
                 ctx.shadowOffsetX = 10;
                 ctx.shadowOffsetY = 10;
-                ctx.shadowBlur = 100; // 1 is crisp ; 100 is a blur;
+                ctx.shadowBlur = 26; // 1 is crisp ; 100 is a blur;
                 ctx.shadowColor = "rgba(1,1,1,0.5)";  // play around with this.
+
 
                 ctx.fillStyle = "#CC0000";
                 ctx.fillRect(10, 10, 100, 100);
 
                 ctx.restore(); // restore the original context without the shadow...
 
-                ctx.fillStyle = "#CCCC00";
+                ctx.fillStyle = "#CCC000";
                 ctx.fillRect(180, 10, 100, 100);
             }
 

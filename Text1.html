@@ -10,12 +10,19 @@
             if (Modernizr.canvas) {
 
                 var canvas = document.getElementById('can');
-                var context = canvas.getContext('2d');
-                //context.fillStyle = "red";// sets up the color to be used in the fill
+                var context = canvas.getContext('2d');// default width = 300; height= 150
+                context.fillStyle = "red";// sets up the color to be used in the fill
                 context.fillRect(0, 0, 400, 400); // actually fills up a rectangle with the above mentioned color.
                 context.fillStyle = 'white';
                 context.font = '3em Sans serif';
-                context.textBaseline = 'bottom';
+                context.textBaseline = 'top'; // property of the base line itself and not text.
+                // drawing a line
+                context.beginPath();
+                context.moveTo(100, 100);
+                context.lineTo(150, 100);
+                context.closePath();
+                context.stroke();
+                // Writing text to show the textBaseLIne property.
                 context.fillText('Yavalry', 100, 100);
 
             }

@@ -14,19 +14,16 @@
 
                 var ctr = document.getElementById('counter');
                 img.addEventListener('load', function(evt){
+                    var self = this;
                     var multiplier = 1;
                     var interval = window.setInterval(function(){
                         multiplier += 1;
                         multiplier === 1500 ? (function(){
                             clearInterval(interval);
-                            context.fillStyle = "#aaa";
-                            context.font = '3em Sans Serif';
-                            context.textBaseline = 'top';
-                            context.fillText('Krithika ',130,130);
                         }()) : false ;
 
                         ctr.innerHTML = multiplier;
-                        ctx.drawImage(this,175,50, 350,200,0,0,0.5*multiplier,0.4*multiplier);
+                        ctx.drawImage(self,175,50, 350,200,0,0,0.5*multiplier,0.4*multiplier);
                     },1);
                 });
             }
