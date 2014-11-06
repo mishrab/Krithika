@@ -20,11 +20,12 @@
                         multiplier += 1;
                         multiplier === 1500 ? (function(){
                             clearInterval(interval);
-                        }()) : false ;
+                        }()) : false ; // False is just used to complete the stmt.
 
                         ctr.innerHTML = multiplier;
                         ctx.drawImage(self,175,50, 350,200,0,0,0.5*multiplier,0.4*multiplier);
                     },1);
+
                 });
             }
         });

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <title>VideoOverlay11</title>
+    <meta charset="utf-8" />
+    <style>
+        body{
+            font: 100 1em Avenir;
+
+        }
+        #container
+        {
+            position: relative;
+        }
+        #overlay
+        {
+            background-color: white;
+            width: 480px;
+            height: 270px;
+            padding: 1em;
+            position: absolute;
+            left: 0; top: 0;
+            opacity: 0.3;
+            color: white;
+            background-color: rgba(0,0,0,0);
+            /* set up transition */
+            -webkit-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -o-transition: all 1s ease-in-out;
+            -ms-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <video width="480" muted autoplay poster="merc.jpg"
+           tabindex="0" controls>
+        <source src="media/merc.mp4" type="video/mp4" />
+        <source src="media/merc.webm" type="video/webm" />
+    </video>
+    <div id="overlay">
+        <h1>GoLiveLabs</h1>
+    </div>
+</div>
