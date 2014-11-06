@@ -32,11 +32,11 @@
                     initial_pos.y = event.clientY;
                     console.log(initial_pos.x, initial_pos.y);
                     canvas.addEventListener('mousemove' , mousemove);
-                })
+                });
 
-                canvas.addEventListener('mouseup', function(event){
+                canvas.addEventListener('mouseup', function(){
                     canvas.removeEventListener('mousemove', mousemove);
-                })
+                });
 
                 function mousemove(evt){
 
@@ -76,7 +76,7 @@
 <body>
 <div style="position:fixed; z-index: 100; color: red">  info about point </div>
 <img src="img/tiny_image.jpg" alt="Text loaded instead of image" class="hide_image"/>
-<canvas id="grayscale"> No CANVAS stuff</canvas>
+<canvas id="grayscale"> No CANVAS </canvas>
 
 </body>
 </html>

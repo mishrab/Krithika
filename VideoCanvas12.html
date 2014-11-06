@@ -24,11 +24,11 @@
             var context = canv.getContext('2d');
             setInterval(function () {
                 context.drawImage(vid, 0, 0, 853, 480);
-                var canvas = document.createElement('canvas');
+                /*var canvas = document.createElement('canvas');
                 var context2 = canvas.getContext('2d');
                 context2.width = 853;
                 context2.height = 480;
-                context2.drawImage(vid, 0, 0, 853, 480);
+                context2.drawImage(vid, 0, 0, 853, 480);*/
             }, 16);
         });
     </script>
@@ -40,7 +40,7 @@
     </canvas>
 </div>
 <div>
-    <video id="vid" autoplay controls muted height=480 width=853 poster="media/merc.jpg">
+    <video id="vid" autoplay controls height=480 width=853 poster="media/merc.jpg">
         <source src="media/merc.mp4" type="video/mpeg">
         <source src="media/merc.webm" type="video/webm">
     </video>
