@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Image Sprites</title>
+    <style>
+        div#icon {
+            display: inline-block;
+            background-image: url('img/icons.jpg');
+            background-position: -113px -283px;
+            width: 30px;
+            height: 30px;
+        }
+        div.container {
+            margin: 3em;
+            padding: 3em;
+            box-shadow: 1px 1px 5px #ccc;
+
+        }
+        select  {
+            font: 100 1.3em Avenir;
+            margin-right: 5em;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+
+            var arr = ['twitter', 'pinterest', 'facebook', 'google+', 'youtube', 'youtube2', 'tumblr', 'apple'];
+            var select = document.getElementById('network');
+            arr.forEach(function(elem, index){
+                var option = document.createElement('option');
+                option.value = -113 - index * 45 + 'px -284px'
+                option.innerHTML = elem;
+                select.appendChild(option);
+            });
+            var div = document.getElementById('icon');
+
+            select.onchange = function(e) {
+                div.style.backgroundPosition = select.value;
+            };
+
+
+
+
+        });
+
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <select name="" id="network" style="display: inline-block;"></select>
+    <div id="icon"></div>
+    <img src="img/icons.jpg" alt="" width=30/>
+</div>
+
+<img src="img/icons.jpg" alt=""/>
+
+
+
+
+
+</body>
+</html>

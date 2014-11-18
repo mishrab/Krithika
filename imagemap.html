@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <style>
+        body{
+            display: none;;
+        }
+        div.screen {
+            position: absolute;
+            height: 174px;
+            width: 702px;
+
+        }
+    </style>
+    <title></title>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function(){
+            document.body.style.display = 'block';
+            var toggle = false;
+            var coords = [];
+            document.body.children[0].onclick = function(e){
+                if (toggle = !toggle) {
+                    coords = [];
+                    coords.push(e.clientX);
+                    coords.push(e.clientY);
+                } else {
+                    coords.push(e.clientX);
+                    coords.push(e.clientY);
+                    console.log(coords);
+                }
+            };
+        });
+    </script>
+</head>
+<body>
+<img src="img/merc.png" alt="Merc" usemap="#merc" style="border: 1px solid red;" width=700/>
+
+<map name="merc">
+    <area shape="rect" coords="0,0,178,171" target="_self" href="http://www.mbusa.com/mercedes/vehicles/class/class-CLA/bodystyle-CPE" alt=""/>
+    <area shape="rect" coords="179,0,356,171" target="_blank" href="http://www.mbusa.com/mercedes/vehicles/class/class-C/bodystyle-SDN" alt=""/>
+    <area shape="rect" coords="357,0,533,171" target="_blank" href="http://www.mbusa.com/mercedes/vehicles/class/class-E/bodystyle-SDN"/>
+    <area shape="rect" coords="534,0,709,171" target="_blank" href="http://www.mbusa.com/mercedes/vehicles/class/class-S/bodystyle-SDN"/>
+</map>
+
+<inputfile></inputfile>
+<div>
+    <input type="file"/>
+</div>
+</body>
+</html>
